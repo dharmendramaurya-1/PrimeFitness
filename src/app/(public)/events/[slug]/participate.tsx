@@ -22,6 +22,7 @@ export default function ParticipateDialogBox({
   onClose,
 }: ParticipateDialogBoxProps) {
   const router = useRouter();
+  const isParticipationClosed = true;
 
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -87,7 +88,11 @@ export default function ParticipateDialogBox({
       onClick={onClose}
     >
       <div
-        className="  z-999! relative w-full max-w-lg rounded-2xl bg-white p-8 shadow-xl"
+        className={`relative w-full rounded-2xl bg-white shadow-xl ${
+          isParticipationClosed
+            ? "max-w-2xl px-10 py-14"
+            : "max-w-lg p-8"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -98,7 +103,16 @@ export default function ParticipateDialogBox({
           <XIcon className="w-5 h-5" />
         </button>
 
-        {!eventId ? (
+        {isParticipationClosed ? (
+          <div className="space-y-4">
+            <h2 className="text-2xl font-black text-[#0f1f16]">
+              Participation is closed
+            </h2>
+            <p className="text-lg text-slate-600">
+              Registration for this event is currently closed.
+            </p>
+          </div>
+        ) : !eventId ? (
           <div className="flex items-center justify-center py-16 text-slate-400">
             Loading...
           </div>
