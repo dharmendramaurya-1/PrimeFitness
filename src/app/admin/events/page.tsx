@@ -50,6 +50,9 @@ export default async function AdminEventsPage() {
                 <th className="text-left px-4 py-3 font-bold text-slate-600 uppercase tracking-wider text-xs">
                   Status
                 </th>
+                <th className="text-left px-4 py-3 font-bold text-slate-600 uppercase tracking-wider text-xs">
+                  Participation
+                </th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>
@@ -78,6 +81,13 @@ export default async function AdminEventsPage() {
                       className={`text-xs px-2 py-1 rounded-full font-bold ${event.published ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"}`}
                     >
                       {event.published ? "Published" : "Draft"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4">
+                    <span
+                      className={`text-xs px-2 py-1 rounded-full font-bold ${event.participationOpen === false ? "bg-slate-100 text-slate-600" : "bg-green-100 text-green-700"}`}
+                    >
+                      {event.participationOpen === false ? "Closed" : "Open"}
                     </span>
                   </td>
                   <td className="px-4 py-4">

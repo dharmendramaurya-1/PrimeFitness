@@ -20,7 +20,12 @@ export async function PUT(
   await connectDB();
   const { id } = await params;
   const body = await req.json();
-  const event = await Event.findByIdAndUpdate(id, body, { new: true });
+  const event = await Event.findByIdAndUpdate(
+    id,
+    { $set: body },
+    { new: true, runValidators: true },
+  );
+  if (!event) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(event);
 }
 

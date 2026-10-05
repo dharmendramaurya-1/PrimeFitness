@@ -19,6 +19,12 @@ export async function POST(req: NextRequest) {
   }
 
   const event = (await Event.findById(eventId).lean()) as any;
+  if (event?.participationOpen === false) {
+    return NextResponse.json(
+      { error: "Participation applications are closed for this event" },
+      { status: 409 },
+    );
+  }
   const eventTitle = event?.title ?? "Unknown Event";
 
   const participation = await Participate.create({

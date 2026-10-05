@@ -97,6 +97,8 @@ export type EventFormData = {
   sponsorTiers: SponsorTier[];
   gallery: GalleryItem[];
   published: boolean;
+  participationOpen: boolean;
+  participationClosedMessage: string;
   tags: string[];
   metaTitle: string;
   canonicalUrl: string;

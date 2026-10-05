@@ -34,6 +34,8 @@ export default async function EditEventPage({
         faqs: clean.faqs,
         sponsorTiers: clean.sponsorTiers,
         published: clean.published,
+        participationOpen: clean.participationOpen,
+        participationClosedMessage: clean.participationClosedMessage,
         tags: clean.tags,
         metaTitle: clean.metaTitle,
         canonicalUrl: clean.canonicalUrl,

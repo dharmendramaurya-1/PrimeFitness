@@ -41,17 +41,17 @@ const trainers = [
     ],
     bio: "Demetrius is a former collegiate football player at Huntingdon College in Montgomery, Alabama, where he earned a Bachelor's degree in Sports Management. He has over a year of experience working in employment services and fitness training for individuals with disabilities. Demetrius is also an advocate for health and wellness products and is currently working toward his Nutritionist Certification through ISSA, further expanding his ability to support healthy, active lifestyles.",
   },
-  // {
-  //   name: "Tucker Baird",
-  //   role: "Trainer & Rehabilitation Specialist",
-  //   image: "/tucker.png",
-  //   specialties: [
-  //     "Adaptive Performance",
-  //     "Clinical Rehabilitation",
-  //     "Strength & Conditioning",
-  //   ],
-  //   bio: "Tucker Baird is an NASM Certified Personal Trainer currently studying kinesiology with a specialty in clinical rehabilitation. My background in collegiate baseball, bodybuilding, and powerlifting gives me a strong foundation in strength and performance, but my true passion is helping people of all abilities feel confident and capable in their bodies. I value integrity, hard work, and creating a training environment where every client feels supported and respected.",
-  // },
+  {
+    name: "Tucker Baird",
+    role: "Trainer & Rehabilitation Specialist",
+    image: "/tucker.png",
+    specialties: [
+      "Adaptive Performance",
+      "Clinical Rehabilitation",
+      "Strength & Conditioning",
+    ],
+    bio: "Tucker Baird is an NASM Certified Personal Trainer currently studying kinesiology with a specialty in clinical rehabilitation. My background in collegiate baseball, bodybuilding, and powerlifting gives me a strong foundation in strength and performance, but my true passion is helping people of all abilities feel confident and capable in their bodies. I value integrity, hard work, and creating a training environment where every client feels supported and respected.",
+  },
   {
     name: "Arshdeep Singh",
     role: "Adaptive Performance Specialist",
@@ -74,13 +74,13 @@ const trainers = [
     ],
     bio: "Arman specializes in architecting specialized movement pathways for individuals with complex physical and sensory needs. With a deep focus on bridging the gap between clinical rehabilitation and high-performance training, he combines evidence-based biomechanics with a client-first philosophy. Arman is dedicated to ensuring that every athlete—regardless of their starting point—discovers their uncompromising peak through safety, precision, and patient, expert-led coaching.",
   },
-  // {
-  //   name: "Evan James Brizendine",
-  //   role: "Strength & Conditioning Lead",
-  //   image: "/Evan.png",
-  //   specialties: ["Adaptive Performance", "CSCS", "Athlete Development"],
-  //   bio: "Accomplished strength and conditioning coach with experience leading comprehensive training programs for 250+ collegiate athletes across 15 sports. Successfully designed and implemented safe, performance-driven programs improving strength, power, speed, and injury resilience. A proven leader who supervised and mentored coaches, managed weight room operations, and delivered consistent, high-quality athlete development. Brings additional expertise training diverse populations—from high school and collegiate athletes to older adults with comorbidities—supported by advanced certifications including CSCS and Senior Fitness Specialist.",
-  // },
+  {
+    name: "Evan James Brizendine",
+    role: "Strength & Conditioning Lead",
+    image: "/Evan.png",
+    specialties: ["Adaptive Performance", "CSCS", "Athlete Development"],
+    bio: "Accomplished strength and conditioning coach with experience leading comprehensive training programs for 250+ collegiate athletes across 15 sports. Successfully designed and implemented safe, performance-driven programs improving strength, power, speed, and injury resilience. A proven leader who supervised and mentored coaches, managed weight room operations, and delivered consistent, high-quality athlete development. Brings additional expertise training diverse populations—from high school and collegiate athletes to older adults with comorbidities—supported by advanced certifications including CSCS and Senior Fitness Specialist.",
+  },
 ];
 
 const TrainerCard = ({

@@ -35,6 +35,8 @@ import { useRouter } from "next/navigation";
 export function EventForm({ initialData, mode }: Props) {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
+  const [savingParticipation, setSavingParticipation] = useState(false);
+  const [savingPublication, setSavingPublication] = useState(false);
   const [imagePreview, setImagePreview] = useState(
     initialData?.bannerImage || "",
   );
@@ -74,6 +76,10 @@ export function EventForm({ initialData, mode }: Props) {
       : [{ ...EMPTY_TIER }],
     gallery: initialData?.gallery?.length ? initialData.gallery : [],
     published: initialData?.published ?? false,
+    participationOpen: initialData?.participationOpen ?? true,
+    participationClosedMessage:
+      initialData?.participationClosedMessage ||
+      "Registration for this event is currently closed.",
 
     tags: initialData?.tags || [],
     metaTitle: initialData?.metaTitle || "",
@@ -83,6 +89,66 @@ export function EventForm({ initialData, mode }: Props) {
 
   const set = (key: keyof EventFormData, value: any) =>
     setForm((prev) => ({ ...prev, [key]: value }));
+
+  const handleParticipationToggle = async () => {
+    const nextOpen = !form.participationOpen;
+    set("participationOpen", nextOpen);
+
+    if (mode !== "edit" || !initialData?._id) return;
+
+    setSavingParticipation(true);
+    try {
+      const response = await fetch(`/api/events/${initialData._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          participationOpen: nextOpen,
+          participationClosedMessage: form.participationClosedMessage,
+        }),
+      });
+      const savedEvent = response.ok ? await response.json() : null;
+
+      if (
+        !response.ok ||
+        savedEvent?.participationOpen !== nextOpen ||
+        savedEvent?.participationClosedMessage !==
+          form.participationClosedMessage
+      ) {
+        throw new Error("Participation settings were not saved");
+      }
+    } catch {
+      set("participationOpen", !nextOpen);
+      window.alert("Unable to save participation status. Please try again.");
+    } finally {
+      setSavingParticipation(false);
+    }
+  };
+
+  const handlePublicationToggle = async () => {
+    const nextPublished = !form.published;
+    set("published", nextPublished);
+
+    if (mode !== "edit" || !initialData?._id) return;
+
+    setSavingPublication(true);
+    try {
+      const response = await fetch(`/api/events/${initialData._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ published: nextPublished }),
+      });
+      const savedEvent = response.ok ? await response.json() : null;
+
+      if (!response.ok || savedEvent?.published !== nextPublished) {
+        throw new Error("Publication status was not saved");
+      }
+    } catch {
+      set("published", !nextPublished);
+      window.alert("Unable to save publication status. Please try again.");
+    } finally {
+      setSavingPublication(false);
+    }
+  };
 
   const handleTitleChange = (title: string) => {
     setForm((prev) => ({
@@ -392,9 +458,19 @@ export function EventForm({ initialData, mode }: Props) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
+    const savedEvent = res.ok ? await res.json() : null;
     setSaving(false);
-    if (res.ok) router.push("/admin/events");
-    else alert("Failed to save. Please try again.");
+    if (!res.ok) {
+      alert("Failed to save. Please try again.");
+    } else if (
+      savedEvent?.participationOpen !== payload.participationOpen ||
+      savedEvent?.participationClosedMessage !==
+        payload.participationClosedMessage
+    ) {
+      alert("Participation settings were not saved. Please try again.");
+    } else {
+      router.push("/admin/events");
+    }
   };
 
   const clearError = (field: string) => {
@@ -420,14 +496,14 @@ export function EventForm({ initialData, mode }: Props) {
           </button>
 
           <button
-            disabled={saving}
+            disabled={saving || savingParticipation || savingPublication}
             onClick={() => handleSubmit(false)}
             className="px-4 py-2 border border-slate-300 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-50"
           >
             Save Draft
           </button>
           <button
-            disabled={saving}
+            disabled={saving || savingParticipation || savingPublication}
             onClick={() => handleSubmit(true)}
             className="px-5 py-2 bg-green-600 text-white rounded-lg text-sm font-bold hover:bg-green-700 disabled:opacity-50"
           >
@@ -1265,17 +1341,67 @@ export function EventForm({ initialData, mode }: Props) {
             <div className="flex items-center gap-3">
               <button
                 type="button"
-                onClick={() => set("published", !form.published)}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${form.published ? "bg-green-600" : "bg-slate-300"}`}
+                role="switch"
+                aria-checked={form.published}
+                aria-label="Publish event"
+                disabled={savingPublication || savingParticipation || saving}
+                onClick={handlePublicationToggle}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors disabled:cursor-wait disabled:opacity-60 ${form.published ? "bg-green-600" : "bg-slate-300"}`}
               >
                 <span
                   className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${form.published ? "translate-x-6" : "translate-x-1"}`}
                 />
               </button>
               <span className="text-sm font-medium text-slate-700">
-                {form.published ? "Published" : "Draft"}
+                {savingPublication
+                  ? "Saving status..."
+                  : form.published
+                    ? "Published"
+                    : "Draft"}
               </span>
             </div>
+            <div className="flex items-center gap-3 border-t border-slate-100 pt-3">
+              <button
+                type="button"
+                role="switch"
+                aria-checked={form.participationOpen}
+                aria-label="Open participation applications"
+                disabled={savingParticipation || savingPublication || saving}
+                onClick={handleParticipationToggle}
+                className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors disabled:cursor-wait disabled:opacity-60 ${form.participationOpen ? "bg-green-600" : "bg-slate-300"}`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${form.participationOpen ? "translate-x-6" : "translate-x-1"}`}
+                />
+              </button>
+              <span className="text-sm font-medium text-slate-700">
+                {savingParticipation
+                  ? "Saving participation status..."
+                  : form.participationOpen
+                    ? "Participation applications open"
+                    : "Participation applications closed"}
+              </span>
+            </div>
+            {!form.participationOpen && (
+              <div>
+                <label
+                  htmlFor="participationClosedMessage"
+                  className="mb-1 block text-xs text-slate-500"
+                >
+                  Message shown to visitors
+                </label>
+                <textarea
+                  id="participationClosedMessage"
+                  rows={3}
+                  value={form.participationClosedMessage}
+                  onChange={(event) =>
+                    set("participationClosedMessage", event.target.value)
+                  }
+                  placeholder="Let visitors know why participation is closed."
+                  className={inputCls()}
+                />
+              </div>
+            )}
           </div>
 
           <div className="border border-slate-200 rounded-xl p-5 space-y-4">

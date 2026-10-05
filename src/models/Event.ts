@@ -59,6 +59,8 @@ export interface IEvent {
   sponsorTiers: IEventSponsorTier[];
   gallery: IEventGalleryItem[];
   published: boolean;
+  participationOpen: boolean;
+  participationClosedMessage: string;
   tags: string[];
   metaTitle: string;
   canonicalUrl: string;
@@ -129,6 +131,11 @@ const EventSchema = new Schema<IEvent>(
       default: [],
     },
     published: { type: Boolean, default: false },
+    participationOpen: { type: Boolean, default: true },
+    participationClosedMessage: {
+      type: String,
+      default: "Registration for this event is currently closed.",
+    },
     tags: [{ type: String }],
     metaTitle: { type: String, default: "" },
     canonicalUrl: { type: String, default: "" },
@@ -137,4 +144,21 @@ const EventSchema = new Schema<IEvent>(
   { timestamps: true },
 );
 
-export const Event = models.Event || model<IEvent>("Event", EventSchema);
+const cachedEventModel = models.Event;
+if (cachedEventModel) {
+  if (!cachedEventModel.schema.path("participationOpen")) {
+    cachedEventModel.schema.add({
+      participationOpen: { type: Boolean, default: true },
+    });
+  }
+  if (!cachedEventModel.schema.path("participationClosedMessage")) {
+    cachedEventModel.schema.add({
+      participationClosedMessage: {
+        type: String,
+        default: "Registration for this event is currently closed.",
+      },
+    });
+  }
+}
+
+export const Event = cachedEventModel || model<IEvent>("Event", EventSchema);
