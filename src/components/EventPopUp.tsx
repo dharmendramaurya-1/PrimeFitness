@@ -6,9 +6,8 @@ export default function EventPopUp() {
   const [isOpen, setIsOpen] = useState(true);
   const [copyText, setCopyText] = useState('Share Invite');
 
-  // Inject Tailwind CDN, config, fonts, and custom CSS
+  // Load popup fonts and keep popup-only styles scoped to this component.
   useEffect(() => {
-    // ---------- 1. Google Fonts & Material Symbols ----------
     const preconnect1 = document.createElement('link');
     preconnect1.rel = 'preconnect';
     preconnect1.href = 'https://fonts.googleapis.com';
@@ -32,132 +31,20 @@ export default function EventPopUp() {
       'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
     document.head.appendChild(materialLink);
 
-    // ---------- 2. Tailwind config (must be set BEFORE CDN script) ----------
-    const configScript = document.createElement('script');
-    configScript.textContent = `
-      window.tailwind = {
-        config: {
-          darkMode: "class",
-          theme: {
-            extend: {
-              colors: {
-                "surface-container-lowest": "#ffffff",
-                "on-primary": "#ffffff",
-                "on-tertiary": "#ffffff",
-                "surface-dim": "#cfdaf2",
-                "secondary-container": "#fea619",
-                "surface-container-low": "#f0f3ff",
-                "secondary-fixed": "#ffddb8",
-                "inverse-surface": "#263143",
-                "on-error": "#ffffff",
-                "primary-fixed": "#dee1ff",
-                "on-tertiary-fixed-variant": "#004e5c",
-                "on-secondary-fixed-variant": "#653e00",
-                "error": "#ba1a1a",
-                "primary-fixed-dim": "#b9c3ff",
-                "secondary": "#855300",
-                "outline": "#747688",
-                "on-primary-container": "#dde0ff",
-                "tertiary-fixed": "#acedff",
-                "on-tertiary-container": "#a9ecff",
-                "primary": "#0037d0",
-                "on-secondary-fixed": "#2a1700",
-                "outline-variant": "#c4c5d9",
-                "inverse-on-surface": "#ecf1ff",
-                "inverse-primary": "#b9c3ff",
-                "on-error-container": "#93000a",
-                "on-secondary-container": "#684000",
-                "tertiary-fixed-dim": "#4cd7f6",
-                "on-secondary": "#ffffff",
-                "on-primary-fixed-variant": "#0032c3",
-                "on-tertiary-fixed": "#001f26",
-                "on-primary-fixed": "#001258",
-                "surface": "#f9f9ff",
-                "on-background": "#111c2d",
-                "surface-tint": "#0b46f9",
-                "surface-bright": "#f9f9ff",
-                "primary-container": "#1b4dff",
-                "tertiary": "#005463",
-                "surface-container-highest": "#d8e3fb",
-                "error-container": "#ffdad6",
-                "surface-container-high": "#dee8ff",
-                "tertiary-container": "#006e81",
-                "surface-container": "#e7eeff",
-                "secondary-fixed-dim": "#ffb95f",
-                "background": "#f9f9ff",
-                "on-surface": "#111c2d",
-                "surface-variant": "#d8e3fb",
-                "on-surface-variant": "#434656"
-              },
-              borderRadius: {
-                "DEFAULT": "0.25rem",
-                "lg": "0.5rem",
-                "xl": "0.75rem",
-                "full": "9999px"
-              },
-              spacing: {
-                "gutter-md": "1.5rem",
-                "margin-md": "2rem",
-                "space-xs": "0.25rem",
-                "space-sm": "0.5rem",
-                "space-md": "1rem",
-                "gutter": "1rem",
-                "space-xl": "2rem",
-                "margin": "1rem",
-                "space-lg": "1.5rem"
-              },
-              fontFamily: {
-                "headline-lg-mobile": ["Outfit"],
-                "headline-xl-mobile": ["Outfit"],
-                "headline-md": ["Outfit"],
-                "body-sm": ["Plus Jakarta Sans"],
-                "body-lg": ["Plus Jakarta Sans"],
-                "headline-xl": ["Outfit"],
-                "label-lg": ["Plus Jakarta Sans"],
-                "label-sm": ["Plus Jakarta Sans"],
-                "headline-sm": ["Outfit"],
-                "body-md": ["Plus Jakarta Sans"],
-                "headline-lg": ["Outfit"],
-                "label-md": ["Plus Jakarta Sans"]
-              },
-              fontSize: {
-                "headline-lg-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "700" }],
-                "headline-xl-mobile": ["30px", { lineHeight: "36px", letterSpacing: "-0.015em", fontWeight: "800" }],
-                "headline-md": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
-                "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }],
-                "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
-                "headline-xl": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "800" }],
-                "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "700" }],
-                "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "600" }],
-                "headline-sm": ["18px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "600" }],
-                "body-md": ["15px", { lineHeight: "22px", fontWeight: "400" }],
-                "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.015em", fontWeight: "700" }],
-                "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.03em", fontWeight: "600" }]
-              }
-            }
-          }
-        }
-      };
-    `;
-    document.head.appendChild(configScript);
-
-    // ---------- 3. Tailwind CDN script ----------
-    const tailwindScript = document.createElement('script');
-    tailwindScript.src = 'https://cdn.tailwindcss.com';
-    document.head.appendChild(tailwindScript);
-
-    // ---------- 4. Custom CSS ----------
     const styleTag = document.createElement('style');
     styleTag.textContent = `
-      ::-webkit-scrollbar { display: none; }
-      @layer base {
-        html, body { margin: 0; padding: 0; }
-        body { overscroll-behavior: none; }
+      .event-popup {
+        font-family: "Plus Jakarta Sans", sans-serif;
       }
-      .animate-in {
-        animation: fadeInZoom 0.25s ease-out forwards;
+      .event-popup h2,
+      .event-popup h3,
+      .event-popup h4 {
+        font-family: Outfit, sans-serif;
       }
-      @keyframes fadeInZoom {
+      .event-popup .popup-animate-in {
+        animation: eventPopupFadeInZoom 0.25s ease-out forwards;
+      }
+      @keyframes eventPopupFadeInZoom {
         from { opacity: 0; transform: scale(0.96); }
         to { opacity: 1; transform: scale(1); }
       }
@@ -165,13 +52,16 @@ export default function EventPopUp() {
     document.head.appendChild(styleTag);
 
     return () => {
-      // Cleanup not strictly necessary for a single-use modal
+      preconnect1.remove();
+      preconnect2.remove();
+      fontLink.remove();
+      materialLink.remove();
+      styleTag.remove();
     };
   }, []);
 
   // ---------- Handlers ----------
   const closeModal = () => setIsOpen(false);
-  const openModal = () => setIsOpen(true);
 
   const handleCopyInvite = async () => {
     const textToCopy =
@@ -203,20 +93,17 @@ export default function EventPopUp() {
 
   // ---------- Render ----------
   if (!isOpen) {
-    return (
-      <div className="w-full min-h-screen flex items-center justify-center bg-slate-900/60 p-4">
-        <button
-          onClick={openModal}
-          className="px-6 py-3 bg-primary text-white rounded-xl shadow-lg font-label-lg hover:bg-primary-container transition"
-        >
-          Open Event Details
-        </button>
-      </div>
-    );
+    return null;
   }
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center bg-slate-900/60 p-4 sm:p-6 lg:p-8">
+    <div
+      className="event-popup fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-6 lg:p-8"
+      style={{
+        background:
+          "linear-gradient(to bottom, transparent 5.5rem, rgba(15, 23, 42, 0.6) 5.5rem)",
+      }}
+    >
       <div className="flex flex-col w-full relative">
         <div className="w-full flex items-center justify-center" id="eventModalOverlay">
           
@@ -224,7 +111,7 @@ export default function EventPopUp() {
           <div
             aria-labelledby="modalTitle"
             aria-modal="true"
-            className="relative w-full max-w-[760px] max-h-[95vh] overflow-y-auto bg-white rounded-[32px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] flex flex-col transition-all duration-300 transform scale-100 animate-in"
+            className="relative w-full max-w-[760px] max-h-[95vh] overflow-y-auto bg-white rounded-[32px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] flex flex-col transition-all duration-300 transform scale-100 popup-animate-in"
             role="dialog"
           >
             

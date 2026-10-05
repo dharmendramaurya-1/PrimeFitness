@@ -44,6 +44,12 @@ const Navbar = () => {
           ? "bg-green-600 py-3 shadow-lg border-b border-green-700"
           : "bg-transparent py-4"
       }`}
+      style={{
+        backgroundColor:
+          scrolled || !isHome
+            ? "var(--color-green-600, #113617)"
+            : "transparent",
+      }}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* Logo */}

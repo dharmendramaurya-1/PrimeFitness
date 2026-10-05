@@ -15,6 +15,7 @@ import { Corinthia } from "next/font/google";
 import DonateSidebar from "./DonateSidebar";
 import { Event } from "@/models/Event";
 import { EventGallery } from "@/components/admin/gallery/event-gallery";
+import EventPopUp from "@/components/EventPopUp";
 import { HeartIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -451,6 +452,7 @@ export default async function EventDetailPage({
           </div>
         </section>
       )}
+      <EventPopUp />
     </main>
   );
 }
