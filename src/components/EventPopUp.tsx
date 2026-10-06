@@ -320,7 +320,7 @@ export default function EventPopUp() {
                   </div>
                   <div>
                     <p className="font-label-sm text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Event Schedule</p>
-                    <p className="font-label-md text-[13px] font-bold text-slate-800">Saturday, April 26 • 9:00 AM - 1:00 PM</p>
+                    <p className="font-label-md text-[13px] font-bold text-slate-800">Saturday, October 10, 2026 • 9:00 AM - 1:00 PM</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -329,7 +329,7 @@ export default function EventPopUp() {
                   </div>
                   <div>
                     <p className="font-label-sm text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Meeting Spot</p>
-                    <p className="font-label-md text-[13px] font-bold text-slate-800">Riverside Park Pavilion • North Gates</p>
+                    <p className="font-label-md text-[13px] font-bold text-slate-800">De Benedetti Park, Lodi, CA 95240</p>
                   </div>
                 </div>
               </div>
