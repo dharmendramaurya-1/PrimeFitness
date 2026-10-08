@@ -74,6 +74,18 @@ const trainers = [
     ],
     bio: "Arman specializes in architecting specialized movement pathways for individuals with complex physical and sensory needs. With a deep focus on bridging the gap between clinical rehabilitation and high-performance training, he combines evidence-based biomechanics with a client-first philosophy. Arman is dedicated to ensuring that every athlete—regardless of their starting point—discovers their uncompromising peak through safety, precision, and patient, expert-led coaching.",
   },
+  {
+    name: "Hannah Lucas",
+    role: "Adaptive Fitness & Wellness Trainer",
+    image: "/hanna.jpeg",
+    specialties: [
+      "Adaptive Fitness",
+      "Functional Movement",
+      "Strength & Conditioning",
+      "Mobility & Wellness"
+    ],
+    bio: "Hannah Lucas is a dedicated fitness professional focused on helping individuals build strength, mobility, confidence, and overall well-being through personalized training. Her approach emphasizes creating supportive and inclusive fitness experiences that adapt to each individual's abilities, goals, and needs. With a client-centered approach, Hannah works to make movement approachable, purposeful, and sustainable. Her training philosophy aligns with Prime Fitness Plus's commitment to adaptive performance, functional movement, and holistic wellness.",
+  },
   // {
   //   name: "Evan James Brizendine",
   //   role: "Strength & Conditioning Lead",
