@@ -77,7 +77,7 @@ const trainers = [
   {
     name: "Hannah Lucas",
     role: "Certified Strength & Nutrition Coach | Yoga, Barre & Pilates Instructor",
-    image: "/hanna.jpeg",
+    image: "/hannas.jpeg",
     specialties: [
       "Strength Training & Conditioning",
       "Nutrition Coaching & Healthy Habits",
