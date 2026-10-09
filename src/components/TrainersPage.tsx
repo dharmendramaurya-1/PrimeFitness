@@ -76,15 +76,17 @@ const trainers = [
   },
   {
     name: "Hannah Lucas",
-    role: "Adaptive Fitness & Wellness Trainer",
+    role: "Certified Strength & Nutrition Coach | Yoga, Barre & Pilates Instructor",
     image: "/hanna.jpeg",
     specialties: [
-      "Adaptive Fitness",
-      "Functional Movement",
-      "Strength & Conditioning",
-      "Mobility & Wellness"
+      "Strength Training & Conditioning",
+      "Nutrition Coaching & Healthy Habits",
+      "Yoga, Barre & Mat Pilates",
+      "Group Fitness & Personalized Programming",
+      "Mobility, Flexibility & Movement Technique",
+      "Mindfulness & Holistic Wellness"
     ],
-    bio: "Hannah Lucas is a dedicated fitness professional focused on helping individuals build strength, mobility, confidence, and overall well-being through personalized training. Her approach emphasizes creating supportive and inclusive fitness experiences that adapt to each individual's abilities, goals, and needs. With a client-centered approach, Hannah works to make movement approachable, purposeful, and sustainable. Her training philosophy aligns with Prime Fitness Plus's commitment to adaptive performance, functional movement, and holistic wellness.",
+    bio: "Hannah Lucas is a certified strength and nutrition coach with a background in Kinesiology and Exercise Physiology. As the founder of Healed with Hannah, she combines strength training, nutrition, mindfulness, and personalized coaching to promote holistic wellness. With experience in personal training, yoga, barre, sculpt, spin, and Mat Pilates, Hannah creates supportive and engaging fitness experiences that help clients build strength, improve mobility, boost confidence, and develop sustainable healthy habits.",
   },
   {
     name: "Emari White",
