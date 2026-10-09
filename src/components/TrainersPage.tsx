@@ -86,13 +86,17 @@ const trainers = [
     ],
     bio: "Hannah Lucas is a dedicated fitness professional focused on helping individuals build strength, mobility, confidence, and overall well-being through personalized training. Her approach emphasizes creating supportive and inclusive fitness experiences that adapt to each individual's abilities, goals, and needs. With a client-centered approach, Hannah works to make movement approachable, purposeful, and sustainable. Her training philosophy aligns with Prime Fitness Plus's commitment to adaptive performance, functional movement, and holistic wellness.",
   },
-  // {
-  //   name: "Evan James Brizendine",
-  //   role: "Strength & Conditioning Lead",
-  //   image: "/Evan.png",
-  //   specialties: ["Adaptive Performance", "CSCS", "Athlete Development"],
-  //   bio: "Accomplished strength and conditioning coach with experience leading comprehensive training programs for 250+ collegiate athletes across 15 sports. Successfully designed and implemented safe, performance-driven programs improving strength, power, speed, and injury resilience. A proven leader who supervised and mentored coaches, managed weight room operations, and delivered consistent, high-quality athlete development. Brings additional expertise training diverse populations—from high school and collegiate athletes to older adults with comorbidities—supported by advanced certifications including CSCS and Senior Fitness Specialist.",
-  // },
+  {
+    name: "Emari White",
+    role: "Adaptive Fitness & Wellness Trainer",
+    image: "/emari.jpeg",
+    specialties: [
+      "Adaptive Fitness",
+      "Functional Movement",
+      "Strength & Conditioning",
+      "Mobility & Wellness"],
+    bio: "Emari is a dedicated fitness professional focused on helping individuals build strength, mobility, confidence, and overall well-being through personalized training. His approach emphasizes creating supportive and inclusive fitness experiences that adapt to each individual's abilities, goals, and needs. With a client-centered approach, Emari works to make movement approachable, purposeful, and sustainable. His training philosophy aligns with Prime Fitness Plus's commitment to adaptive performance, functional movement, and holistic wellness.",
+  },
 ];
 
 const TrainerCard = ({
